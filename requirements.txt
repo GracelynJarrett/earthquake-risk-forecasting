@@ -1,0 +1,21 @@
+# Project dependencies — Earthquake Risk Forecasting
+# Install with:  pip install -r requirements.txt
+
+# requests: makes HTTP calls to the USGS earthquake web service (pulls the data)
+requests==2.32.3
+
+# pandas: tables (DataFrames) for organizing, analyzing, and cleaning the data
+pandas==3.0.3
+
+# matplotlib: draws graphs so we can visually analyze the earthquake data
+matplotlib==3.11.0
+
+# seaborn: sits on top of matplotlib for nicer statistical graphs with less code
+seaborn==0.13.2
+
+# jupyterlab: notebook environment for exploring and analyzing the data
+jupyterlab==4.6.1
+
+# NOTE: sqlite3 (our database) is built into Python, so it needs no install here.
+# Later weeks will add: scikit-learn, mlflow (Week 3), xgboost (Week 3-4),
+# apache-airflow (Week 4), fastapi (Week 5).
