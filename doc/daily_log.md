@@ -45,7 +45,44 @@ First day of class — the project was introduced.
     - Japans loweset recorded eatherquake is 2.7 not 2.0 do to Japan not recording/reporting anything lower
 
 
-## [Week 2 -2] July 7, 2026
+## [Week 2 - 2] July 7, 2026
 **Worked on:** Today I was able to analyze the data and norow down what feaches I know I want to have and why. The only feacher I am unsher about is the depth of the earthquake. There is no big coralation from the depth and magmitude but I am curios to see the models accursy and other metrics with and with out the depth feacher. 
 **Up Next:** Creating the data cleaning pipline
 **Blockers:** I had truble geting my kunal for my jupiternotebook to work but I avencaly fixed it
+
+
+## [Week 2 - 3] July 8, 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**

@@ -17,6 +17,10 @@ seaborn==0.13.2
 # map and the live presentation; seaborn/matplotlib handle the static report graphs
 plotly==6.8.0
 
+# shapely: geometry tools — computes each quake's distance to the nearest tectonic
+# plate boundary (the distance_to_fault_km feature added in clean_data.py)
+shapely==2.1.2
+
 # jupyterlab: notebook environment for exploring and analyzing the data
 jupyterlab==4.6.1
 
