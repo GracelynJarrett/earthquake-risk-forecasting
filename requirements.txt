@@ -13,6 +13,10 @@ matplotlib==3.11.0
 # seaborn: sits on top of matplotlib for nicer statistical graphs with less code
 seaborn==0.13.2
 
+# plotly: interactive graphs (hover, zoom, pan) — used for the geographic quake
+# map and the live presentation; seaborn/matplotlib handle the static report graphs
+plotly==6.8.0
+
 # jupyterlab: notebook environment for exploring and analyzing the data
 jupyterlab==4.6.1
 

@@ -33,12 +33,19 @@ First day of class — the project was introduced.
 **Up next:** Waiting for final approval of the project.
 **Blockers:** I was nervous about the presentation.
 
-----
+----------
+
 ## [Week 2 - 1] July 6, 2026
 ** Worked on:** Today I was able to creat a scrite to test pulling the records world wide in the last 24 hours; where I got a resulte of 45 earthquakes. I also created a historcal script that pulled data from each reagion staring in 2000 - present year. I had time and started to set up the Jupiter notbook for tomorrow 
 **Up Next:** start analyzing the data, find what feachers I am thing about using and why, compare the differnet data sets. I might even pull one more region of Newzelinde
 **Blockers"** No Blockers for today. 
 
-**NOTES** - Califona haves 2x more eathquakes then the other regions probaly due to its size and that USGS is a USA orginzation
+**NOTES** - Califona haves 4x more eathquakes then the other regions probaly due to its size and that USGS is a USA orginzation
     - Japan haves an outlyer of 9.7 eatherquake in 2011 (this was expeted)
     - Japans loweset recorded eatherquake is 2.7 not 2.0 do to Japan not recording/reporting anything lower
+
+
+## [Week 2 -2] July 7, 2026
+**Worked on:** Today I was able to analyze the data and norow down what feaches I know I want to have and why. The only feacher I am unsher about is the depth of the earthquake. There is no big coralation from the depth and magmitude but I am curios to see the models accursy and other metrics with and with out the depth feacher. 
+**Up Next:** Creating the data cleaning pipline
+**Blockers:** I had truble geting my kunal for my jupiternotebook to work but I avencaly fixed it
