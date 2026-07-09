@@ -52,9 +52,9 @@ First day of class — the project was introduced.
 
 
 ## [Week 2 - 3] July 8, 2026
-**Worked on:**
-**UP Next:**
-**Blockers:**
+**Worked on:** Today I was able to make the cleaning pipline, added in the distiont from falt feacher, and save all the clean data into a database.
+**UP Next:** Tomorow I will be working on all the documentations, I will start with declaing what feacher I want to use and why, also what my target varable is. 
+**Blockers:** No blockers for today
 
 
 ## [Week  - ] July , 2026
