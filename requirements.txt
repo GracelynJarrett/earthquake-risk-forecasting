@@ -21,6 +21,9 @@ plotly==6.8.0
 # plate boundary (the distance_to_fault_km feature added in clean_data.py)
 shapely==2.1.2
 
+# scipy: statistical tests — used for correlation p-values in the EDA notebook
+scipy==1.18.0
+
 # jupyterlab: notebook environment for exploring and analyzing the data
 jupyterlab==4.6.1
 

@@ -57,8 +57,8 @@ First day of class — the project was introduced.
 **Blockers:** No blockers for today
 
 
-## [Week  - ] July , 2026
-**Worked on:**
+## [Week 2 - 4 ] July 8, 2026 (unafisioal check in)
+**Worked on:** Today I got all of my documetation done. I created the implementation plan, data understaning report and figuer out what I want to present for tomorrow. I updated my schedule, adding more detail to what I will be doing each day and when I know I have reacherd my goal. The scheduel file is now desinded as a todo list.  I also added a stakeholder note file for me to wright down notes about my stakeholder, where I narow down For Emergincy responders down to FireFiters. 
 **UP Next:**
 **Blockers:**
 
