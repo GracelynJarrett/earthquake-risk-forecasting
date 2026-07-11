@@ -52,21 +52,21 @@ First day of class — the project was introduced.
 
 
 ## [Week 2 - 3] July 8, 2026
-**Worked on:** Today I was able to make the cleaning pipline, added in the distiont from falt feacher, and save all the clean data into a database.
-**UP Next:** Tomorow I will be working on all the documentations, I will start with declaing what feacher I want to use and why, also what my target varable is. 
+**Worked on:** Today I was able to make the cleaning pipeline, added in the distance-from-fault feature, and saved all the clean data into a database.
+**UP Next:** Tomorrow I will be working on all the documentation. I will start with declaring what features I want to use and why, and what my target variable is. 
 **Blockers:** No blockers for today
 
 
-## [Week 2 - 4 ] July 8, 2026 (unafisioal check in)
-**Worked on:** Today I got all of my documetation done. I created the implementation plan, data understaning report and figuer out what I want to present for tomorrow. I updated my schedule, adding more detail to what I will be doing each day and when I know I have reacherd my goal. The scheduel file is now desinded as a todo list.  I also added a stakeholder note file for me to wright down notes about my stakeholder, where I narow down For Emergincy responders down to FireFiters. 
+## [Week 2 - 4] July 9, 2026 (unofficial check-in)
+**Worked on:** Today I got all of my documentation done. I created the implementation plan and data understanding report, and figured out what I want to present for tomorrow. I updated my schedule, adding more detail to what I will be doing each day and when I know I have reached my goal. The schedule file is now designed as a to-do list.  I also added a stakeholder note file for me to write down notes about my stakeholder, where I narrowed down from emergency responders to firefighters. 
 **UP Next:**
 **Blockers:**
 
 
-## [Week  - ] July , 2026
-**Worked on:**
-**UP Next:**
-**Blockers:**
+## [Week 2 - 5 ] July 10, 2026
+**Worked on:** Today was presentation day. I think I did really well, and I received some feedback to look more into the seasonal and monthly timeline for just my data over my threshold.
+**UP Next:** Over the weekend, look into the timeline over my threshold. Starting Monday, I will set up my MLflow and start working on integrating the metrics that I need to gather live, then process. 
+**Blockers:** I have work Saturday and Monday, and I also need to work on my capstone proposal.
 
 
 ## [Week  - ] July , 2026

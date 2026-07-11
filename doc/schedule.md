@@ -53,11 +53,11 @@ pitch outline
   - [x] `schedule.md` update *(this file)*
   - *Done when: all Week-2 documents are complete*
 
-- [ ] **Day 5 (Fri) — Present + submit**
-  - [ ] Present the data-understanding walkthrough (notebook)
-  - [ ] week 2 audience notes
-  - [ ] `ai-usage-log.md` (Week 2 entry)
-  - [ ] Commit + push; merge branch to main
+- [x] **Day 5 (Fri) — Present + submit**
+  - [x] Present the data-understanding walkthrough (notebook)
+  - [x] week 2 audience notes
+  - [x] `ai-usage-log.md` (Week 2 entry)
+  - [x] Commit + push; merge branch to main
   - *Done when: presented and all deliverables submitted (due Sunday)*
 
 ---
