@@ -1,7 +1,7 @@
 # Claude.md — AI Usage Plan
 **Project:** Earthquake Risk Forecasting
 **Course:** Applied AI Projects 2
-**Last Updated:** Week 1
+**Last Updated:** Week 2
 
 ---
 
@@ -11,6 +11,17 @@ this project. It is a living document and will be updated at the end of each
 week to reflect my actual AI usage. The goal is to use AI as a coding 
 assistant, tutor, and reviewer — while ensuring I understand and own every 
 decision made in this project.
+
+---
+
+## Project Goal
+Build an honest, **leakage-free** machine-learning system that predicts the weekly 
+risk of a large earthquake for California, Japan, and Greece. Each day, for each 
+region, it predicts whether a **region-significant** earthquake (California 4.5+, 
+Greece 5.0+, Japan 5.5+) will occur in the next 7 days, using only past data. An 
+automated pipeline (pull → clean → store → model → serve) delivers a weekly risk 
+forecast to first responders through a dashboard. Avoiding the data leakage that 
+inflates other earthquake models is a core priority.
 
 ---
 
@@ -58,3 +69,18 @@ scope unless I ask
 the right choice — then add it to `requirements.txt` before we use it
 13. Always propose changes as suggestions first — this applies in both this 
 chat and Claude Code in VSCode
+
+---
+
+## Best Practices Established *(updated Week 2)*
+Working habits that have proven effective:
+- **Notebooks:** Claude does **not** edit my `.ipynb` files directly (VSCode owns 
+the file and overwrites edits) — instead it gives me cell contents to paste in 
+myself. Imports go in their own cell; each graph gets its own cell.
+- **Large documents:** to keep AI credit use low (target ~$3–4/week), Claude writes 
+a compact **fact-sheet** of verified numbers/findings, I turn it into prose with 
+Copilot, then Claude does an **accuracy check**.
+- **Verify before writing:** Claude checks numbers and claims against the real data 
+before stating them — no guessed statistics.
+- **Plan before code:** we talk through the approach and key decisions before 
+anything gets written.
