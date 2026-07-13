@@ -68,11 +68,12 @@ First day of class — the project was introduced.
 **UP Next:** Over the weekend, look into the timeline over my threshold. Starting Monday, I will set up my MLflow and start working on integrating the metrics that I need to gather live, then process. 
 **Blockers:** I have work Saturday and Monday, and I also need to work on my capstone proposal.
 
+----------------------------------------------------------------------------------
 
-## [Week  - ] July , 2026
-**Worked on:**
-**UP Next:**
-**Blockers:**
+## [Week 3 - 1 ] July 13, 2026
+**Worked on:** Today I set up mlflow, did more analyses on if I should add month as a feacher (the anwer was no), I updated some documents (requiremnts.txt). I also split the data into its train, test, and validation sets. i was even able to make the build feature script, witch means I am a day ahead, and should have more time to run more base model tests.
+**UP Next:** Tomorrow I will creat my first base model and sloly add feachers in (depth, lad/lon, faltline) to find the best model. 
+**Blockers:** No Blockers for today
 
 
 

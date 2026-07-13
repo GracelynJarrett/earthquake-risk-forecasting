@@ -43,7 +43,7 @@ A weekly record of project progress and how AI tools were used each week.
 
 **Feedback received:** From the presentation — look into seasonal and monthly significance for data above my threshold. From my professor during the week — add a magnitude vs. distance-to-fault graph and show p-values for all columns.
 
-**Action items:** Over the weekend, look into the timeline above my threshold. Week 3: set up MLflow, build the temporal split, engineer features, train the baseline logistic regression, and run the 4-variant ablation. Optionally switch the EDA behavior graphs to the cleaned data for consistency.
+**Action items:** Over the weekend, look into the timeline above my threshold. Week 3: set up MLflow, build the temporal split, engineer features, train the baseline logistic regression, and run the 5-run ablation. Optionally switch the EDA behavior graphs to the cleaned data for consistency.
 
 **Reflection:** 
 After analyzing my dataset, the biggest change I have is my thresholds should be different per region. This makes sense because each region is different. Japan typically has larger earthquakes and California has a lot of smaller ones. 

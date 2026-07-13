@@ -26,8 +26,8 @@ USGS FDSN API
 ## Modeling Details
 - **Target:** per-region, per-day, 7-day-ahead binary — 1 if ≥1 quake at/above the region threshold occurs in the next 7 days. **One model** with `region` as a feature.
 - **Region thresholds:** California 4.5 · Greece 5.0 · Japan 5.5 (base rates 15.3% / 21.0% / 39.7%).
-- **Features (as-of the prediction day, per region):** region (one-hot); quake counts (7d, 30d); large-quake count (30d); days since last quake; max magnitude (30d); average magnitude (24h, 7d, 30d); activity trend (this week vs. last); *[ablation]* avg depth (30d), avg distance-to-fault (30d).
-- **Excluded:** `dmin`/`rms`/`nst`/`gap` (leakage), month/season (no seasonality), raw year (2009 artifact).
+- **Features (as-of the prediction day, per region):** region (one-hot); quake counts (7d, 30d); large-quake count (30d, ≥ region threshold); days since last quake; max magnitude (30d); average magnitude (7d, 30d); activity trend (this week vs. last); *[ablation]* avg depth (30d), avg distance-to-fault (30d), recent-activity centroid (avg lat/lon, 30d).
+- **Excluded:** `dmin`/`rms`/`nst`/`gap` (leakage), month/season (no seasonality — the apparent above-threshold monthly peaks were the 2011 Tōhoku and 2019 Ridgecrest aftershock sequences, not a calendar pattern), raw year (2009 artifact).
 - **Metrics:** PR-AUC and F1 (imbalance-aware).
 - **Leakage guardrails:** strict temporal split; a `FEATURE_COLUMNS` allow-list; imputation/scaling fit on training data only; correlations checked *within* each region.
 
@@ -44,7 +44,7 @@ USGS FDSN API
 2. Define the temporal train/validate/test split (by date, no shuffling).
 3. Feature engineering: build the as-of-day feature table (leakage-safe); impute quiet-day gaps on the training set only.
 4. Train the baseline logistic regression (variant 1: base features).
-5. Run the **4-variant ablation** (base / +depth / +faultline / +both); compare by PR-AUC/F1; select the best feature set.
+5. Run the **5-run ablation** (base / +depth / +faultline / +both / +lat-lon); compare by PR-AUC/F1; select the best feature set.
 6. Run leakage checks and document results.
 
 ### Phase 3 — Tuning, Pipeline & Deployment (Week 4)
@@ -83,3 +83,9 @@ Two cadences, kept separate:
 - **Region expansion** (Ring-of-Fire study) recorded as a **future** extension, not current scope.
 - **Airflow** kept in Week 4; the ingestion DAG may be pulled forward to Week 3 if there's slack.
 - **Maintenance cadence defined:** weekly inference refresh (Airflow) vs. periodic/drift-triggered retraining on an expanding, future-validated window.
+
+### Week 3 — July 2026
+- **MLflow + temporal split set up:** pooled by-date split — train ≤2018 / validate 2019–2021 / test 2022–present — with a **7-day embargo** trimming the end of the train and validate blocks so a block's 7-day-ahead label cannot peek across the boundary.
+- **Seasonality re-checked above threshold** (Week-2 presentation feedback): a chi-square flagged Japan (March) and California (July) as non-uniform, but the year-breakdown showed the peaks were the **2011 Tōhoku** (200 of 255 March events) and **2019 Ridgecrest** (34 of 56 July events) aftershock sequences — not a calendar pattern. `month`/`season` stays excluded.
+- **Feature list refined:** dropped `average magnitude (24h)` (noisy at daily grain, redundant with the 7d average); added a leakage-safe **recent-activity centroid** (avg lat/lon, 30d) as an ablation feature.
+- **Ablation expanded to 5 runs:** base / +depth / +faultline / +both / +lat-lon.

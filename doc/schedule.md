@@ -63,29 +63,29 @@ pitch outline
 ---
 
 ## Week 3 — Model Experimentation *(CR4–CR5)*
-**Goal:** Set up MLflow, build the baseline logistic regression, and run the 4-variant feature ablation — leakage-safe.
-**Done when:** baseline trained, the 4 variants compared in MLflow, and the best feature set chosen.
+**Goal:** Set up MLflow, build the baseline logistic regression, and run the 5-run feature ablation — leakage-safe.
+**Done when:** baseline trained, the 5 variants compared in MLflow, and the best feature set chosen.
 **Behind-schedule signal:** baseline isn't running by end of week.
 
-- [ ] **Day 1 — MLflow + temporal split**
+- [x] **Day 1 — MLflow + temporal split**
   - Set up MLflow; define train/validate/test **by date** (no shuffling)
   - *Done when: MLflow runs; split created with no date overlap*
 
-- [ ] **Day 2 — Feature engineering (leakage-safe)**
-  - Build recent-activity windows, `region` encoding, all "as-of-day" features
-  - Impute quiet-day gaps **fit on training data only**
+- [x] **Day 2 — Feature engineering (leakage-safe)**
+  - Build recent-activity windows, all "as-of-day" features → `features` table in `earthquakes.db`
+  - `region` one-hot + impute quiet-day gaps **deferred to Day 3** (fit on training data only)
   - *Done when: feature table built for every (region, day) row*
 
 - [ ] **Day 3 — Baseline model**
   - Train logistic regression (variant 1: base features); log PR-AUC / F1 to MLflow
   - *Done when: baseline metrics are logged*
 
-- [ ] **Day 4 — 4-variant ablation**
-  - base / +depth / +faultline / +both — same split, settings, and metric
-  - *Done when: 4 runs logged; best feature set chosen*
+- [ ] **Day 4 — 5-run ablation**
+  - base / +depth / +faultline / +both / +lat-lon — same split, settings, and metric
+  - *Done when: 5 runs logged; best feature set chosen*
 
 - [ ] **Day 5 — Present + leakage checks / buffer**
-  - **Present** Week 3 progress (baseline + 4-variant ablation results)
+  - **Present** Week 3 progress (baseline + 5-run ablation results)
   - Verify no leakage; document results
   - *Done when: presented; leakage checks pass and results documented*
 
