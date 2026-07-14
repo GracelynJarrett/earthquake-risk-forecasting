@@ -1,0 +1,37 @@
+# model_variants.yaml — feature sets for the Week 3 logistic-regression ablation.
+#
+# Each variant = the shared BASE features PLUS the extra features it "adds".
+# train_baseline.py reads this file so every MLflow run records exactly which
+# features it used — one source of truth for the whole 5-run ablation.
+
+# The core features every variant always includes.
+base_features:
+  numeric:
+    - quakes_7d          # quake count, last 7 days
+    - quakes_30d         # quake count, last 30 days
+    - large_30d          # count of region-significant quakes, last 30 days
+    - avg_mag_7d         # average magnitude, last 7 days
+    - avg_mag_30d        # average magnitude, last 30 days
+    - max_mag_30d        # largest magnitude, last 30 days
+    - trend_7d           # this week's count minus last week's
+    - days_since_last    # days since the most recent quake
+  categorical:
+    - region             # one-hot encoded
+
+# The 5 ablation runs. "add" lists the extra feature(s) switched on for that run.
+variants:
+  base:
+    description: Core recent-activity features only
+    add: []
+  depth:
+    description: Base + average depth (30d)
+    add: [avg_depth_30d]
+  faultline:
+    description: Base + average distance-to-fault (30d)
+    add: [avg_dist_30d]
+  both:
+    description: Base + depth + distance-to-fault
+    add: [avg_depth_30d, avg_dist_30d]
+  latlon:
+    description: Base + recent-activity centroid (lat/lon, 30d)
+    add: [centroid_lat_30d, centroid_lon_30d]

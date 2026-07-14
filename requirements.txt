@@ -34,8 +34,13 @@ jupyterlab==4.6.1
 scikit-learn==1.9.0
 
 # mlflow: experiment tracker — logs each model run (features, settings, PR-AUC/F1)
-# so we can compare the 4 ablation variants reliably in one dashboard (Week 3).
+# so we can compare the 5 ablation variants reliably in one dashboard (Week 3).
 mlflow==3.14.0
+
+# PyYAML: reads config/model_variants.yaml, which defines the feature set for each
+# ablation run. Already installed as an MLflow dependency; pinned here since we use
+# it directly. (Import name is 'yaml'.)
+PyYAML==6.0.3
 
 # NOTE: sqlite3 (our database) is built into Python, so it needs no install here.
 # Later weeks will add: xgboost (Week 3-4), apache-airflow (Week 4), fastapi (Week 5).

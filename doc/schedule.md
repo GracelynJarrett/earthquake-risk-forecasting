@@ -76,12 +76,13 @@ pitch outline
   - `region` one-hot + impute quiet-day gaps **deferred to Day 3** (fit on training data only)
   - *Done when: feature table built for every (region, day) row*
 
-- [ ] **Day 3 — Baseline model**
+- [x] **Day 3 — Baseline model**
   - Train logistic regression (variant 1: base features); log PR-AUC / F1 to MLflow
   - *Done when: baseline metrics are logged*
 
-- [ ] **Day 4 — 5-run ablation**
+- [x] **Day 4 — 5-run ablation**
   - base / +depth / +faultline / +both / +lat-lon — same split, settings, and metric
+  - Bonus: 15 per-region models tested — pooled model won (best set: base/depth)
   - *Done when: 5 runs logged; best feature set chosen*
 
 - [ ] **Day 5 — Present + leakage checks / buffer**

@@ -33,7 +33,7 @@ First day of class — the project was introduced.
 **Up next:** Waiting for final approval of the project.
 **Blockers:** I was nervous about the presentation.
 
-----------
+------------------------------------------------------
 
 ## [Week 2 - 1] July 6, 2026
 ** Worked on:** Today I was able to creat a scrite to test pulling the records world wide in the last 24 hours; where I got a resulte of 45 earthquakes. I also created a historcal script that pulled data from each reagion staring in 2000 - present year. I had time and started to set up the Jupiter notbook for tomorrow 
@@ -75,6 +75,102 @@ First day of class — the project was introduced.
 **UP Next:** Tomorrow I will creat my first base model and sloly add feachers in (depth, lad/lon, faltline) to find the best model. 
 **Blockers:** No Blockers for today
 
+
+
+## [Week 3 - 2 ] July 14, 2026
+**Worked on:** Today was vary predutive, I was able to train and validate 20 different models. 15 of the 20 mondels where looking at training the models indvicaly. However from a quick glance the vary first Baise model we all of the tested feachers out did the best. 
+**UP Next:** Tomorrow I will dive deeper into analyzing the different models to clarify wich base model I would like use.
+**Blockers:** No Blockers for today. 
+
+**What we discussed:** 
+**Feedback received:** 
+**Action items:**
+**Reflection:** 
+
+
+
+## [Week 3 - 2 ] July 15, 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**UP Next:**
+**Blockers:**
 
 
 ## [Week  - ] July , 2026
