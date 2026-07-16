@@ -8,8 +8,9 @@ from that day (only data available by then); the label (added later) looks FORWA
 load the cleaned data and create the full (region x day) grid, including quiet days.
 """
 
-# pandas: build and reshape the region-day table.
+# pandas + numpy: build and reshape the region-day table.
 import pandas as pd
+import numpy as np
 # Path: OS-independent file paths.
 from pathlib import Path
 # sqlite3: write the finished table into the database (same approach as load_to_sqlite.py).
@@ -132,14 +133,14 @@ def compute_window_features(df, grid):
         feat["quakes_30d"] = n30
         feat["large_30d"] = daily["large"].rolling(30, min_periods=1).sum().fillna(0)
         # Averages = rolling sum of the quantity / rolling count of quakes (0/0 -> NaN).
-        feat["avg_mag_7d"] = daily["mag_sum"].rolling(7, min_periods=1).sum() / n7.replace(0, pd.NA)
-        feat["avg_mag_30d"] = daily["mag_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, pd.NA)
+        feat["avg_mag_7d"] = daily["mag_sum"].rolling(7, min_periods=1).sum() / n7.replace(0, np.nan)
+        feat["avg_mag_30d"] = daily["mag_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, np.nan)
         feat["max_mag_30d"] = daily["mag_max"].rolling(30, min_periods=1).max()
-        feat["avg_depth_30d"] = daily["depth_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, pd.NA)
-        feat["avg_dist_30d"] = daily["dist_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, pd.NA)
+        feat["avg_depth_30d"] = daily["depth_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, np.nan)
+        feat["avg_dist_30d"] = daily["dist_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, np.nan)
         # Recent-activity centroid (plain mean is fine — none of our regions cross ±180°).
-        feat["centroid_lat_30d"] = daily["lat_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, pd.NA)
-        feat["centroid_lon_30d"] = daily["lon_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, pd.NA)
+        feat["centroid_lat_30d"] = daily["lat_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, np.nan)
+        feat["centroid_lon_30d"] = daily["lon_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, np.nan)
         # Activity trend: this week's count minus the previous week's count.
         feat["trend_7d"] = n7 - n7.shift(7)
 

@@ -82,17 +82,25 @@ First day of class — the project was introduced.
 **UP Next:** Tomorrow I will dive deeper into analyzing the different models to clarify wich base model I would like use.
 **Blockers:** No Blockers for today. 
 
-**What we discussed:** 
-**Feedback received:** 
-**Action items:**
-**Reflection:** 
-
-
 
 ## [Week 3 - 2 ] July 15, 2026
-**Worked on:**
-**UP Next:**
-**Blockers:**
+**Worked on:** Today I worked on finlaixing my model expemetation, and started my experimention report.
+**UP Next:** Tomorrow I will finnish the report and creat my slides for my slide show presitation.
+**Blockers:** No Bloakcers for today
+
+**What we discussed:** 
+    we talked about how I have many expermental modles and how they all have a low metrics, wich was expeted. We talked about doing more experments with taking out the temperal feachers to see if the model would inprove. We also talked about finding a way to make this project more trustworthy for users, and not just crying wolf.
+**Feedback received:** 
+        Still need to find a way to show users that my modle is safe to use, and that I should look into adding more temperal feachers and removing the temeral feachesrs. 
+**Action items:**
+    Look in to removing the temperal feachers
+    look into added temperal feachers in years 1,3, 5, + in magmituded
+    Look inot pulling in explotion data to see any coralation
+    Look into current models feachers coraspontis to the models
+    Look into presigion not just USC score
+**Reflection:** 
+        Over all I think I am at a good spot, I agree that I should look into what my modle would look like if there was no temperal feachers. I am still trying to find a way to garinty that users can trust my model and that its not just crying wolf. I am also still doing some reacher into what FireFighters would do if they had time to prepar for an earth quack. And what would happan if my model had False positeve and False Negitves. 
+
 
 
 ## [Week  - ] July , 2026

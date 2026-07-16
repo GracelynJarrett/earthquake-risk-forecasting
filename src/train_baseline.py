@@ -36,8 +36,11 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 import mlflow
 import mlflow.sklearn
 # The model + imbalance-aware metrics (log_loss = the loss LogisticRegression minimizes).
+# precision = of the alarms we raise, how many are real ("don't cry wolf");
+# recall = of the real events, how many we catch.
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import average_precision_score, f1_score, log_loss
+from sklearn.metrics import (average_precision_score, f1_score, log_loss,
+                             precision_score, recall_score)
 
 
 # The database + table where build_features.py stored the modeling-ready features.
@@ -116,12 +119,18 @@ def feature_columns(cfg, variant):
         variant (str): the variant name (e.g. 'base', 'depth', 'latlon').
 
     Returns:
-        tuple[list[str], list[str]]: (numeric_columns, categorical_columns), where
-        numeric = base numeric + the variant's extra 'add' features.
+        tuple[list[str], list[str]]: (numeric_columns, categorical_columns). A variant
+        either ADDS to the base numeric features (`add:`) or fully OVERRIDES the numeric
+        set (`numeric:`) — the override is used by the "remove-temporal" location-only
+        experiments. Categorical defaults to the base (region) unless overridden.
     """
     base = cfg["base_features"]
-    numeric = list(base["numeric"]) + list(cfg["variants"][variant]["add"])
-    categorical = list(base["categorical"])
+    spec = cfg["variants"][variant]
+    if "numeric" in spec:                       # explicit override (location-only variants)
+        numeric = list(spec["numeric"])
+    else:                                        # default: base numeric + the variant's extras
+        numeric = list(base["numeric"]) + list(spec.get("add", []))
+    categorical = list(spec.get("categorical", base["categorical"]))
     return numeric, categorical
 
 
@@ -142,12 +151,16 @@ def build_preprocessor(numeric, categorical):
     Returns:
         ColumnTransformer: the preprocessing transformer (unfitted).
     """
-    # Numeric: fill quiet-day blanks with the train median, then standardize.
-    numeric_steps = Pipeline([
-        ("impute", SimpleImputer(strategy="median")),
-        ("scale", StandardScaler()),
-    ])
-    transformers = [("num", numeric_steps, numeric)]
+    transformers = []
+
+    # Numeric: fill quiet-day blanks with the train median, then standardize —
+    # added only when there are numeric columns.
+    if numeric:
+        numeric_steps = Pipeline([
+            ("impute", SimpleImputer(strategy="median")),
+            ("scale", StandardScaler()),
+        ])
+        transformers.append(("num", numeric_steps, numeric))
 
     # Categorical one-hot — added ONLY when there is a categorical column. Pooled
     # models one-hot 'region'; per-region models pass [] and skip this step.
@@ -201,6 +214,8 @@ def evaluate(model, part, feature_cols):
 
     metrics = {"pr_auc": average_precision_score(y, proba),
                "f1": f1_score(y, pred),
+               "precision": precision_score(y, pred, zero_division=0),
+               "recall": recall_score(y, pred, zero_division=0),
                "log_loss": log_loss(y, proba, labels=[0, 1])}
     # Per-region: only when that region has both classes present (else undefined).
     for region in REGIONS:
@@ -208,6 +223,8 @@ def evaluate(model, part, feature_cols):
         if m.any() and len(set(y[m])) > 1:
             metrics[f"pr_auc_{region}"] = average_precision_score(y[m], proba[m])
             metrics[f"f1_{region}"] = f1_score(y[m], pred[m])
+            metrics[f"precision_{region}"] = precision_score(y[m], pred[m], zero_division=0)
+            metrics[f"recall_{region}"] = recall_score(y[m], pred[m], zero_division=0)
             metrics[f"log_loss_{region}"] = log_loss(y[m], proba[m], labels=[0, 1])
     return metrics
 

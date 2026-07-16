@@ -35,3 +35,17 @@ variants:
   latlon:
     description: Base + recent-activity centroid (lat/lon, 30d)
     add: [centroid_lat_30d, centroid_lon_30d]
+
+  # --- "Remove the temporal features" experiments (prof feedback) ------------
+  # These OVERRIDE the numeric set (via `numeric:`) instead of adding to it: they
+  # drop ALL recent-activity features and keep only region + geology/location,
+  # to test whether lat/lon or fault-line carry signal on their own.
+  location_only:
+    description: Region + geology/location only (depth, fault-line, lat/lon); no recent-activity
+    numeric: [avg_depth_30d, avg_dist_30d, centroid_lat_30d, centroid_lon_30d]
+  latlon_only:
+    description: Region + recent-activity centroid only (does lat/lon matter without temporal?)
+    numeric: [centroid_lat_30d, centroid_lon_30d]
+  faultline_only:
+    description: Region + distance-to-fault only (does fault-line matter without temporal?)
+    numeric: [avg_dist_30d]
