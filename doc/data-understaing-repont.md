@@ -147,7 +147,7 @@ Extreme values are **kept**: major earthquakes are the primary phenomenon of int
 - **Geographic mapping:** quakes cluster tightly around tectonic plate boundaries. *Implication:* distance-to-fault is geologically justified.
 - **Event clustering:** median inter-event time ~0.9 h in California, with the mean far above the median (heavy right-skew). *Implication:* activity is clustered, not random — recent activity should be predictive.
 - **Foreshock behavior:** before Tōhoku, daily activity rose from ~1 to ~34 events/day (a real M7.3 foreshock). *Implication:* activity surges can be informative, though foreshocks are not universal.
-- **Seasonality:** none detected. *Implication:* month/season features are unnecessary.
+- **Seasonality:** none detected — even among region-significant events, the apparent monthly peaks (Japan March, California July) trace to the 2011 Tōhoku and 2019 Ridgecrest aftershock sequences, not a calendar cycle. *Implication:* month/season features are unnecessary.
 
 ### Leakage Analysis (headline finding)
 The pooled correlations of magnitude with `dmin` (**0.63**) and `rms` (**0.61**) appeared strong — but they **vanished within each region** (≈ 0). This is a **regional confound (Simpson's paradox)**: regions with larger average magnitudes also have larger `dmin`, so pooling three regions created a spurious trend. Using these would let the model secretly encode *region*.
@@ -173,22 +173,23 @@ All features are measured as of the prediction day, per region (aggregated to th
 **Core features**
 - `region` (one-hot)
 - Earthquake count — last 7 days; last 30 days
-- Large-earthquake count — last 30 days
+- Large-earthquake count — last 30 days (at/above the region threshold)
 - Days since last earthquake
 - Maximum magnitude — last 30 days
-- Average magnitude — last 24 hours; last 7 days; last 30 days
+- Average magnitude — last 7 days; last 30 days
 - Activity trend (current week vs. previous week)
 
 **Ablation features (tested on/off)**
 - Average depth — last 30 days
 - Average distance-to-fault — last 30 days
+- Recent-activity centroid — average latitude & longitude, last 30 days
 
-**Excluded features:** `dmin`, `rms`, `nst`, `gap` (leakage); month/season (no seasonality); raw year (would encode the 2009 catalog artifact)
+**Excluded features:** `dmin`, `rms`, `nst`, `gap` (leakage); month/season (no seasonality — apparent above-threshold monthly peaks traced to the 2011 Tōhoku and 2019 Ridgecrest aftershock sequences, not a calendar pattern); raw year (would encode the 2009 catalog artifact)
 
 ### Planned Modeling Comparison
-A four-way ablation study (on the baseline logistic regression) will isolate the value of the geologic features:
+A five-run ablation study (on the baseline logistic regression) isolates the value of the geologic and location features:
 
-1. Base · 2. Base + Depth · 3. Base + Distance-to-Fault · 4. Base + Both
+1. Base · 2. Base + Depth · 3. Base + Distance-to-Fault · 4. Base + Both · 5. Base + Recent-activity location (lat/lon)
 
 All variants share the same temporal split, settings, and evaluation metric, and are compared with **imbalance-aware metrics (PR-AUC, F1)**. The best-performing feature set carries forward to the Week 4 XGBoost implementation.
 
@@ -206,7 +207,7 @@ All variants share the same temporal split, settings, and evaluation metric, and
 - **CR2 — Cleaning:** Remove non-earthquake events, normalize fields, and exclude leakage-prone columns. *Done when: 0 non-earthquake rows remain and column roles are documented.*
 - **CR3 — Target:** Predict, per region per day, whether a region-significant quake (CA 4.5+ · Greece 5.0+ · Japan 5.5+) occurs in the next 7 days. *Done when: the binary label and per-region base rates are defined (15.3% / 21.0% / 39.7%).*
 - **CR4 — Baseline:** Train a logistic-regression baseline on a strict **temporal** train/validate/test split, logged in MLflow, with leakage checks. *Done when: metrics are logged and leakage checks pass.*
-- **CR5 — Feature evaluation:** Run the 4-variant ablation (base / +depth / +faultline / +both) and select the best feature set by PR-AUC/F1. *Done when: 4 runs are logged and a winner is chosen.*
+- **CR5 — Feature evaluation:** Run the 5-run ablation (base / +depth / +faultline / +both / +lat-lon) and select the best feature set by PR-AUC/F1. *Done when: 5 runs are logged and a winner is chosen.*
 - **CR6 — Improved model:** Train and tune XGBoost, compare to the baseline, and select the best. *Done when: the tuned model and comparison are documented.*
 - **CR7 — Automation:** Orchestrate ingest → clean → load (→ predict) with Airflow on a schedule. *Done when: the DAG runs end-to-end.*
 - **CR8 — Serving:** Serve weekly per-region risk through a FastAPI endpoint. *Done when: the endpoint returns forecasts.*
@@ -224,6 +225,6 @@ All variants share the same temporal split, settings, and evaluation metric, and
 |---|---|---|---|
 | 1 | Proposal & pitch | Approved proposal | — |
 | 2 | Data foundation | Data pulled, cleaned, and stored in SQLite; report delivered | CR1–CR3 |
-| 3 | Model experimentation | MLflow set up; baseline + 4-variant ablation | CR4–CR5 |
+| 3 | Model experimentation | MLflow set up; baseline + 5-run ablation | CR4–CR5 |
 | 4 | Tuning, pipeline & deployment | XGBoost tuned, best model chosen, Airflow pipeline | CR6–CR7 |
 | 5 | Serving & business layer | FastAPI + Next.js dashboard; final presentation | CR8–CR9 |

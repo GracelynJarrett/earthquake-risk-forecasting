@@ -5,7 +5,9 @@
 requests==2.32.3
 
 # pandas: tables (DataFrames) for organizing, analyzing, and cleaning the data
-pandas==3.0.3
+# NOTE: pinned to 2.3.3 (was 3.0.3) — MLflow requires pandas < 3, so installing
+# MLflow downgraded it. 2.3.x is the stable line; our scripts run fine on it.
+pandas==2.3.3
 
 # matplotlib: draws graphs so we can visually analyze the earthquake data
 matplotlib==3.11.0
@@ -27,6 +29,18 @@ scipy==1.18.0
 # jupyterlab: notebook environment for exploring and analyzing the data
 jupyterlab==4.6.1
 
+# scikit-learn: the logistic-regression baseline + train/test tooling (Week 3).
+# Installed automatically as an MLflow dependency.
+scikit-learn==1.9.0
+
+# mlflow: experiment tracker — logs each model run (features, settings, PR-AUC/F1)
+# so we can compare the 5 ablation variants reliably in one dashboard (Week 3).
+mlflow==3.14.0
+
+# PyYAML: reads config/model_variants.yaml, which defines the feature set for each
+# ablation run. Already installed as an MLflow dependency; pinned here since we use
+# it directly. (Import name is 'yaml'.)
+PyYAML==6.0.3
+
 # NOTE: sqlite3 (our database) is built into Python, so it needs no install here.
-# Later weeks will add: scikit-learn, mlflow (Week 3), xgboost (Week 3-4),
-# apache-airflow (Week 4), fastapi (Week 5).
+# Later weeks will add: xgboost (Week 3-4), apache-airflow (Week 4), fastapi (Week 5).

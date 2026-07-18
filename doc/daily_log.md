@@ -33,56 +33,161 @@ First day of class — the project was introduced.
 **Up next:** Waiting for final approval of the project.
 **Blockers:** I was nervous about the presentation.
 
-----------
+------------------------------------------------------
 
 ## [Week 2 - 1] July 6, 2026
-** Worked on:** Today I was able to creat a scrite to test pulling the records world wide in the last 24 hours; where I got a resulte of 45 earthquakes. I also created a historcal script that pulled data from each reagion staring in 2000 - present year. I had time and started to set up the Jupiter notbook for tomorrow 
-**Up Next:** start analyzing the data, find what feachers I am thing about using and why, compare the differnet data sets. I might even pull one more region of Newzelinde
-**Blockers"** No Blockers for today. 
+**Worked on:** Today I was able to create a script to test pulling the records worldwide in the last 24 hours, where I got a result of 45 earthquakes. I also created a historical script that pulled data from each region starting in 2000 to the present year. I had time and started to set up the Jupyter notebook for tomorrow.
+**Up next:** Start analyzing the data, find what features I am thinking about using and why, and compare the different data sets. I might even pull one more region of New Zealand.
+**Blockers:** No blockers for today.
 
-**NOTES** - Califona haves 4x more eathquakes then the other regions probaly due to its size and that USGS is a USA orginzation
-    - Japan haves an outlyer of 9.7 eatherquake in 2011 (this was expeted)
-    - Japans loweset recorded eatherquake is 2.7 not 2.0 do to Japan not recording/reporting anything lower
+**NOTES** - California has 4x more earthquakes than the other regions, probably due to its size and that USGS is a USA organization.
+    - Japan has an outlier of a 9.7 earthquake in 2011 (this was expected).
+    - Japan's lowest recorded earthquake is 2.7, not 2.0, due to Japan not recording/reporting anything lower.
 
 
 ## [Week 2 - 2] July 7, 2026
-**Worked on:** Today I was able to analyze the data and norow down what feaches I know I want to have and why. The only feacher I am unsher about is the depth of the earthquake. There is no big coralation from the depth and magmitude but I am curios to see the models accursy and other metrics with and with out the depth feacher. 
-**Up Next:** Creating the data cleaning pipline
-**Blockers:** I had truble geting my kunal for my jupiternotebook to work but I avencaly fixed it
+**Worked on:** Today I was able to analyze the data and narrow down what features I know I want to have and why. The only feature I am unsure about is the depth of the earthquake. There is no big correlation between the depth and magnitude, but I am curious to see the model's accuracy and other metrics with and without the depth feature.
+**Up next:** Creating the data cleaning pipeline.
+**Blockers:** I had trouble getting the kernel for my Jupyter notebook to work, but I eventually fixed it.
 
 
 ## [Week 2 - 3] July 8, 2026
 **Worked on:** Today I was able to make the cleaning pipeline, added in the distance-from-fault feature, and saved all the clean data into a database.
-**UP Next:** Tomorrow I will be working on all the documentation. I will start with declaring what features I want to use and why, and what my target variable is. 
-**Blockers:** No blockers for today
+**Up next:** Tomorrow I will be working on all the documentation. I will start with declaring what features I want to use and why, and what my target variable is.
+**Blockers:** No blockers for today.
 
 
 ## [Week 2 - 4] July 9, 2026 (unofficial check-in)
-**Worked on:** Today I got all of my documentation done. I created the implementation plan and data understanding report, and figured out what I want to present for tomorrow. I updated my schedule, adding more detail to what I will be doing each day and when I know I have reached my goal. The schedule file is now designed as a to-do list.  I also added a stakeholder note file for me to write down notes about my stakeholder, where I narrowed down from emergency responders to firefighters. 
-**UP Next:**
+**Worked on:** Today I got all of my documentation done. I created the implementation plan and data understanding report, and figured out what I want to present for tomorrow. I updated my schedule, adding more detail to what I will be doing each day and when I know I have reached my goal. The schedule file is now designed as a to-do list. I also added a stakeholder note file for me to write down notes about my stakeholder, where I narrowed down from emergency responders to firefighters.
+**Up next:**
 **Blockers:**
 
 
-## [Week 2 - 5 ] July 10, 2026
+## [Week 2 - 5] July 10, 2026
 **Worked on:** Today was presentation day. I think I did really well, and I received some feedback to look more into the seasonal and monthly timeline for just my data over my threshold.
-**UP Next:** Over the weekend, look into the timeline over my threshold. Starting Monday, I will set up my MLflow and start working on integrating the metrics that I need to gather live, then process. 
+**Up next:** Over the weekend, look into the timeline over my threshold. Starting Monday, I will set up my MLflow and start working on integrating the metrics that I need to gather live, then process.
 **Blockers:** I have work Saturday and Monday, and I also need to work on my capstone proposal.
 
+----------------------------------------------------------------------------------
+
+## [Week 3 - 1] July 13, 2026
+**Worked on:** Today I set up MLflow, did more analysis on whether I should add month as a feature (the answer was no), and I updated some documents (requirements.txt). I also split the data into its train, test, and validation sets. I was even able to make the build-feature script, which means I am a day ahead and should have more time to run more base model tests.
+**Up next:** Tomorrow I will create my first base model and slowly add features in (depth, lat/lon, fault-line) to find the best model.
+**Blockers:** No blockers for today.
+
+
+## [Week 3 - 2] July 14, 2026
+**Worked on:** Today was very productive. I was able to train and validate 20 different models. 15 of the 20 models were looking at training the models individually. However, from a quick glance, the very first base model with all of the tested features did the best.
+**Up next:** Tomorrow I will dive deeper into analyzing the different models to clarify which base model I would like to use.
+**Blockers:** No blockers for today.
+
+
+## [Week 3 - 3] July 15, 2026
+**Worked on:** Today I worked on finalizing my model experimentation, and started my experimentation report.
+**Up next:** Tomorrow I will finish the report and create my slides for my slide show presentation.
+**Blockers:** No blockers for today.
+
+**What we discussed:**
+    We talked about how I have many experimental models and how they all have low metrics, which was expected. We talked about doing more experiments with taking out the temporal features to see if the model would improve. We also talked about finding a way to make this project more trustworthy for users, and not just crying wolf.
+**Feedback received:**
+    Still need to find a way to show users that my model is safe to use, and that I should look into adding more temporal features and removing the temporal features.
+**Action items:**
+    Look into removing the temporal features.
+    Look into adding temporal features over years 1, 3, 5, + in magnitude.
+    Look into pulling in explosion data to see any correlation.
+    Look into how the current model's features correspond to the model.
+    Look into precision, not just AUC score.
+**Reflection:**
+    Overall, I think I am at a good spot. I agree that I should look into what my model would look like if there were no temporal features. I am still trying to find a way to guarantee that users can trust my model and that it's not just crying wolf. I am also still doing some research into what firefighters would do if they had time to prepare for an earthquake, and what would happen if my model had false positives and false negatives.
+
+
+
+## [Week 3 - 4] July 16, 2026
+**Worked on:** Today I worked on creating my PowerPoint for tomorrow.
+**Up next:** Making my PowerPoint look nice and then presenting to the class.
+**Blockers:** Today I stayed and watched all of the Capstone presentations, and didn't get a lot of time to work on my project.
+
+
+## [Week 3 - 5] July 17, 2026
+**Worked on:** Today I finished my PowerPoint and presented. I think overall I did an ok job at presenting. I was able to receive feedback, and now I have a lot of other things I can experiment with.
+**Up next:** Later today, and this weekend, I will finish writing my report, finish the capstone assessment, and get ahead in other classes so next week I can focus on working on this project.
+**Blockers:** I have work.
+
+--------------------------------------------------------------------------------------------------------------
 
 ## [Week  - ] July , 2026
 **Worked on:**
-**UP Next:**
+**Up next:**
 **Blockers:**
 
 
-
 ## [Week  - ] July , 2026
 **Worked on:**
-**UP Next:**
+**Up next:**
 **Blockers:**
 
 
 ## [Week  - ] July , 2026
 **Worked on:**
-**UP Next:**
+**Up next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**Up next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**Up next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**Up next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**Up next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**Up next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**Up next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**Up next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**Up next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**Up next:**
+**Blockers:**
+
+
+## [Week  - ] July , 2026
+**Worked on:**
+**Up next:**
 **Blockers:**
