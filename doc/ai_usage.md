@@ -55,3 +55,21 @@ This week Claude was very helpful in keeping me on track with my original plan. 
 - **Corrections needed:** Told Claude to keep imports and each graph in their own notebook cells; stopped it from editing my `.ipynb` directly (VSCode overwrote the edits) and switched to it giving me cells to paste; scoped library use (Plotly only for the map + presentation); made the final calls on decisions Claude surfaced (region-specific thresholds; keeping the leakage columns in storage behind a feature allow-list). Claude also fixed Copilot's mangled report tables and strengthened the leakage write-up.
 
 
+
+
+## Week 3 — July 13–17, 2026
+
+**What we worked on:** Week 3 model experimentation. Set up MLflow; built the temporal train/validate/test split (by date, with a 7-day embargo); engineered the region-day feature table; and trained a baseline logistic regression plus a 5-variant feature ablation. Then went further with a lot of extra experiments: per-region models, a Random Forest preview, two reference baselines (a no-skill dummy and a naive "recent activity" heuristic), feature-importance analysis, a "remove-the-temporal-features" location-only test, and region-by-feature interactions. Added an explicit leakage-check script and precision/recall metrics, wrote the ML experimentation report, and presented on Friday.
+
+**Deliverables completed:** `src/` scripts (`temporal_split.py`, `build_features.py`, `train_baseline.py`, `train_per_region.py`, `train_reference_baselines.py`, `train_ransomforest.py`, `feature_importance.py`, `train_interactions.py`, `check_leakage.py`); `config/model_variants.yaml`; the `features` table in `earthquakes.db`; MLflow tracking (2 experiments, 32 runs); `ml_experimentation-report.md` (Week 3 folder); `implementation-plan.md` Week-3 update; `schedule.md` updates; Week-3 presentation.
+
+**Feedback received:** Professor 1-1 — look at feature importance, try removing the temporal features (do lat/lon or fault-line matter without them?), add longer-window temporal features (avg magnitude over 1/3/5 years, all-time max), test explosion data, and report precision, not just AUC. Presentation — do more experimentation around which features to include and why.
+
+**Action items:** Week 4 — tune XGBoost (with region-by-feature interactions to try to exploit the Greece fault-line signal), add per-region decision thresholds, and test the longer-window features and explosion data. Also rethink the original data-leakage framing (see reflection).
+
+**Reflection:** The honest findings mattered more than the metrics: a naive heuristic was surprisingly competitive, per-region models lost to the pooled model (too little data each), lat/lon added nothing, and fault-line only helped Greece. I also realized my original data-leakage worry may be less relevant now — since I am not using a time-series forecasting model and the features are as-of-day windows, shuffling the split would not obviously leak; worth rethinking next week. The leakage check even caught a real bug (features accidentally stored as text).
+
+### AI Usage
+- **Tasks:** Built each script section by section with plain-language explanations; verified every metric straight from MLflow before writing it down; drafted the experimentation-report fact-sheet (for me to turn into prose, then accuracy-checked); explained concepts in plain English when I was confused (the heuristic, feature-importance coefficients, precision vs. recall); and helped design the presentation slide format.
+- **Prompts that worked well:** "Explain the concept before writing any code"; building each file one function at a time; "verify the numbers from MLflow"; and asking Claude to be honest about whether an experiment actually helped rather than just reporting the top number.
+- **Corrections needed:** Caught Claude overstating that my chosen model "beat" the heuristic — it only narrowly did, and lost on Japan/Greece; Claude corrected it. I kept my own (mis-spelled) filenames when I chose to. I made the final modeling calls (pooled logistic regression with `depth`; treating lat/lon as an ablation feature; rejecting per-region models).
