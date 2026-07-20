@@ -85,27 +85,53 @@ pitch outline
   - Bonus: 15 per-region models tested — pooled model won (best set: base/depth)
   - *Done when: 5 runs logged; best feature set chosen*
 
-- [ ] **Day 5 — Present + leakage checks / buffer**
+- [x] **Day 5 — Present + leakage checks / buffer**
   - **Present** Week 3 progress (baseline + 5-run ablation results)
   - Verify no leakage; document results
   - *Done when: presented; leakage checks pass and results documented*
 
 ---
 
-## Week 4 — Tuning, Pipeline & Deployment *(CR6–CR7)*
-**Goal:** Train and tune XGBoost, pick the best model, and automate the pipeline with Airflow.
-**Done when:** final model chosen and Airflow runs ingest → clean → load → predict end-to-end.
-**Behind-schedule signal:** final model not chosen or Airflow not running.
+## Week 4 — Model Refinement, Deployment & Pipeline *(CR6–CR7)*
+**Goal:** Train/tune XGBoost, run seven model-refinement experiments, lock and register the final model in MLflow, then stand up a minimal inference endpoint + Airflow DAG.
+**Done when:** all seven experiments run and captured in fact-sheets, final model chosen and registered/versioned in MLflow, the inference endpoint returns per-region risk, the DAG is defined, and the Model Deployment report is submitted.
+**Behind-schedule signal:** final model not chosen, or experiment results not documented by the Day 4 present.
 
-- [ ] **Day 1 — XGBoost** (winning feature set) — *Done when: trained and logged in MLflow*
+*Experiment fact-sheets:* each experiment day (1–4) produces a short fact-sheet of verified numbers as we go, so the Day 6–7 report is prose assembly, not fresh analysis.
 
-- [ ] **Day 2 — Hyperparameter tuning** — *Done when: tuned model + best params logged*
+- [x] **Day 1 — XGBoost + feature importance** 
+  - [x] train/tune XGBoost on the winning feature set, then measure **feature importance/significance (#1)**
+  - [x] *Done when: model trained and logged in MLflow; importance ranking recorded*
 
-- [ ] **Day 3 — Pick final model + build Airflow DAG** (via Docker) — *Done when: final model chosen/documented and the DAG (fetch → clean → load → predict) is defined*
+- [ ] **Day 2 — Feature experiments** 
+  - [ ] **add temporal features (#6)** (large-magnitude counts over the last 1 / 3 / 5+ years, backward-looking only) and 
+  - [ ]**prune the features that hurt the model most (#7)**, then re-evaluate 
+  - [ ] *Done when: expanded + pruned feature sets are trained and compared in MLflow*
 
-- [ ] **Day 4 — Test full pipeline + Present** — test the DAG end-to-end, then **present** Week 4 progress *(presentation is Day 4 — no school Day 5)* — *Done when: the DAG runs end-to-end and Week 4 is presented*
+- [ ] **Day 3 — Per-region imbalance tuning** 
+  - [ ] **per-region class weighting (#5)** 
+  - [ ] **per-region prediction threshold (#4)** 
+  - [ ] *Done when: per-region weights + thresholds are tuned and logged*
 
-- [ ] **Day 5 — No school**
+- [ ] **Day 4 — Confidence reporting + Present** 
+  - [] bucket predictions into **Low / Medium / High confidence (#3)**
+  - []**calibration check** (a "70%" means roughly 70%), then 
+  - [ ]**present** Week 4 progress *(presentation is Day 4 — no school Day 5)* 
+  - [ ] *Done when: confidence buckets produced, calibration checked, and Week 4 presented*
+
+- [ ] **Day 5 — No school (working day) — Leakage demo + final model** 
+  - [ ] run the **random-split leakage demonstration (#2)** to show how much shuffling inflates the metrics vs. our honest temporal split, then **pick the final model** and 
+  - [ ]**register/version it in MLflow** 
+  - [ ]*Done when: leakage demo documented; final model chosen and registered in MLflow*
+
+- [ ] **Day 6 — Inference endpoint + Airflow DAG**       
+  - [] build a minimal FastAPI endpoint that loads the registered model and returns per-region risk + confidence 
+  - [] **define the Airflow DAG** (fetch → clean → load → predict) *(full end-to-end Docker test deferred to Week 5)* 
+  - [] *Done when: endpoint returns a real per-region forecast and the DAG is defined*
+
+- [ ] **Day 7 — Deployment report + submit** 
+  - [] write the **Model Deployment report (Section 4)** 
+  - [] *Done when: report complete and all Week-4 deliverables submitted (due Sunday)*
 
 ---
 
@@ -114,7 +140,7 @@ pitch outline
 **Done when:** the dashboard shows weekly risk forecasts for California, Japan, and Greece, backed by the pipeline.
 **Behind-schedule signal:** dashboard not showing forecasts or FastAPI not serving predictions.
 
-- [ ] **Day 1 — FastAPI endpoint** serves the forecast — *Done when: endpoint returns per-region weekly risk*
+- [ ] **Day 1 — Harden endpoint + finish Airflow pipeline** — expand the Week-4 FastAPI endpoint and run the DAG end-to-end in Docker *(deferred from Week 4)* — *Done when: endpoint serves per-region weekly risk + confidence, and the DAG runs ingest → clean → load → predict end-to-end*
 
 - [ ] **Day 2 — Next.js project setup** — *Done when: the scaffold runs locally*
 

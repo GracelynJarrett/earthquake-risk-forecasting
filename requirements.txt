@@ -42,5 +42,12 @@ mlflow==3.14.0
 # it directly. (Import name is 'yaml'.)
 PyYAML==6.0.3
 
+# xgboost: gradient-boosted decision trees — the Week 4 model. Builds many small
+# trees in sequence, each fixing the previous ones' mistakes, to capture non-linear
+# patterns and feature interactions the logistic-regression baseline can't. Chosen
+# because it's the best-in-class tool for tabular data like ours. (Import name is
+# 'xgboost'; we use its XGBClassifier.)
+xgboost==3.3.0
+
 # NOTE: sqlite3 (our database) is built into Python, so it needs no install here.
-# Later weeks will add: xgboost (Week 3-4), apache-airflow (Week 4), fastapi (Week 5).
+# Later weeks will add: apache-airflow (Week 4), fastapi (Week 5).

@@ -9,7 +9,7 @@ Short daily notes on what I worked on, what's next, and any blockers.
 **Up next:** What are you working on in the next session?
 **Blockers:** Are you facing any challenges or blockers? If none, write "None."
 ------------
-
+# Week 1
 ## [Week 1 - 1] June 29, 2026
 First day of class — the project was introduced.
 
@@ -34,7 +34,7 @@ First day of class — the project was introduced.
 **Blockers:** I was nervous about the presentation.
 
 ------------------------------------------------------
-
+# week 2
 ## [Week 2 - 1] July 6, 2026
 **Worked on:** Today I was able to create a script to test pulling the records worldwide in the last 24 hours, where I got a result of 45 earthquakes. I also created a historical script that pulled data from each region starting in 2000 to the present year. I had time and started to set up the Jupyter notebook for tomorrow.
 **Up next:** Start analyzing the data, find what features I am thinking about using and why, and compare the different data sets. I might even pull one more region of New Zealand.
@@ -69,7 +69,7 @@ First day of class — the project was introduced.
 **Blockers:** I have work Saturday and Monday, and I also need to work on my capstone proposal.
 
 ----------------------------------------------------------------------------------
-
+# week3
 ## [Week 3 - 1] July 13, 2026
 **Worked on:** Today I set up MLflow, did more analysis on whether I should add month as a feature (the answer was no), and I updated some documents (requirements.txt). I also split the data into its train, test, and validation sets. I was even able to make the build-feature script, which means I am a day ahead and should have more time to run more base model tests.
 **Up next:** Tomorrow I will create my first base model and slowly add features in (depth, lat/lon, fault-line) to find the best model.
@@ -114,11 +114,11 @@ First day of class — the project was introduced.
 **Blockers:** I have work.
 
 --------------------------------------------------------------------------------------------------------------
-
-## [Week  - ] July , 2026
-**Worked on:**
-**Up next:**
-**Blockers:**
+# Week 4
+## [Week 4 - 1] July 20, 2026
+**Worked on:** Today I had a small invervew with cluade asking questions about my project. I updataed my Schegeral adding in the extra suff I want/need to do. I train my first GXBoost model based on the best base model feachers. I also got the feachers importens for GXBoost
+**Up next:** Do some more expermantation with adding more feachers and taking away feachers
+**Blockers:** I had work and other class work that needs to get done as well
 
 
 ## [Week  - ] July , 2026
