@@ -49,3 +49,52 @@ variants:
   faultline_only:
     description: Region + distance-to-fault only (does fault-line matter without temporal?)
     numeric: [avg_dist_30d]
+
+  # --- Week 4 Day 2: ADD long-horizon large-quake counts (experiment #6) --------
+  # Incremental ablation built on the 'depth' winner (base + avg_depth_30d): each run
+  # switches on one more trailing window, so we see where extra history stops helping.
+  longhz_1:
+    description: depth + 1yr large-quake count
+    add: [avg_depth_30d, large_365d]
+  longhz_13:
+    description: depth + 1yr, 3yr large-quake counts
+    add: [avg_depth_30d, large_365d, large_1095d]
+  longhz_135:
+    description: depth + 1yr, 3yr, 5yr large-quake counts
+    add: [avg_depth_30d, large_365d, large_1095d, large_1825d]
+  longhz_135a:
+    description: depth + 1yr, 3yr, 5yr, all-time large-quake counts
+    add: [avg_depth_30d, large_365d, large_1095d, large_1825d, large_alltime]
+
+  # --- Week 4 Day 2: PRUNE the two dead features found on Day 1 (experiment #7) --
+  # Overrides the numeric set = the 'depth' features minus days_since_last & trend_7d
+  # (both near-zero across gain, permutation, and logistic coefficients on Day 1).
+  pruned:
+    description: depth minus days_since_last and trend_7d
+    numeric: [quakes_7d, quakes_30d, large_30d, avg_mag_7d, avg_mag_30d, max_mag_30d, avg_depth_30d]
+
+  # --- Week 4 Day 2: combine best long-horizon (1yr) + prune (ablation run 6) ----
+  hz1_pruned:
+    description: pruned set + 1yr large-quake count (best long-horizon + prune)
+    numeric: [quakes_7d, quakes_30d, large_30d, avg_mag_7d, avg_mag_30d, max_mag_30d, avg_depth_30d, large_365d]
+
+  # --- Week 4 Day 2: can long-horizon REPLACE the region shortcut? (ablation run 7)
+  # Same as hz1_pruned but with region dropped (categorical: []), so we can read how
+  # much validation PR-AUC region is really worth once the activity features are present.
+  hz1_pruned_noreg:
+    description: hz1_pruned but with region dropped (can features replace region?)
+    numeric: [quakes_7d, quakes_30d, large_30d, avg_mag_7d, avg_mag_30d, max_mag_30d, avg_depth_30d, large_365d]
+    categorical: []
+
+  # --- Week 4 Day 2: is avg_depth_30d just noise? pruned set WITHOUT depth --------
+  pruned_nodepth:
+    description: pruned set minus avg_depth_30d (tests whether depth is just noise)
+    numeric: [quakes_7d, quakes_30d, large_30d, avg_mag_7d, avg_mag_30d, max_mag_30d]
+
+  # --- Week 4 Day 2: clean region A/B on the best lean set (experiment #7) --------
+  # Identical to pruned_nodepth but with region dropped, so region's value is read on
+  # our actual best set (not the muddied hz1_pruned set).
+  pruned_nodepth_noreg:
+    description: pruned_nodepth minus region (clean test of region's value)
+    numeric: [quakes_7d, quakes_30d, large_30d, avg_mag_7d, avg_mag_30d, max_mag_30d]
+    categorical: []

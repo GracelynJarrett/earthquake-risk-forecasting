@@ -132,6 +132,16 @@ def compute_window_features(df, grid):
         feat["quakes_7d"] = n7
         feat["quakes_30d"] = n30
         feat["large_30d"] = daily["large"].rolling(30, min_periods=1).sum().fillna(0)
+        # Long-horizon "large quake" counts — a data-driven, TIME-VARYING base rate per
+        # region: how many region-significant quakes in the trailing ~1 / 3 / 5 years,
+        # plus an all-time running total (large quakes since records began). Same
+        # backward-looking rolling pattern as large_30d, so leakage-safe; 0 on stretches
+        # with no large quakes yet. Aimed at Day-1's finding that the model leaned on
+        # 'region' only as a frozen base-rate proxy — these move as a region's activity does.
+        feat["large_365d"] = daily["large"].rolling(365, min_periods=1).sum().fillna(0)
+        feat["large_1095d"] = daily["large"].rolling(1095, min_periods=1).sum().fillna(0)
+        feat["large_1825d"] = daily["large"].rolling(1825, min_periods=1).sum().fillna(0)
+        feat["large_alltime"] = daily["large"].expanding(min_periods=1).sum().fillna(0)
         # Averages = rolling sum of the quantity / rolling count of quakes (0/0 -> NaN).
         feat["avg_mag_7d"] = daily["mag_sum"].rolling(7, min_periods=1).sum() / n7.replace(0, np.nan)
         feat["avg_mag_30d"] = daily["mag_sum"].rolling(30, min_periods=1).sum() / n30.replace(0, np.nan)

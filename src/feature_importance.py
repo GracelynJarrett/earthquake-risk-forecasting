@@ -18,6 +18,8 @@ All are re-fit on TRAIN only, reusing the exact pipeline from train_baseline.py.
 
 # pandas: assemble and sort the importance tables.
 import pandas as pd
+# sys: let the caller inspect a different feature set from the command line.
+import sys
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 # permutation_importance: shuffle each feature on VALIDATION and measure the score
@@ -154,7 +156,19 @@ def permutation_importance_xgb(parts, cfg, n_repeats=10):
 
 
 def main():
-    """Print XGBoost gain + permutation importance, logistic coefficients, and RF importances."""
+    """
+    Print XGBoost gain + permutation importance, logistic coefficients, and RF importances.
+
+    Usage:
+        python src/feature_importance.py                # inspect the default set ('depth')
+        python src/feature_importance.py longhz_135a    # inspect any variant (e.g. with new features)
+    """
+    # Optionally inspect a different feature set (so we can see the new long-horizon
+    # features' importance). Reassigns the module-level VARIANT the functions read.
+    global VARIANT
+    if len(sys.argv) > 1:
+        VARIANT = sys.argv[1]
+
     parts = split_data(load_features())
     cfg = load_variants()
 
