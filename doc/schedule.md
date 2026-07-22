@@ -103,26 +103,28 @@ pitch outline
   - [x] train/tune XGBoost on the winning feature set, then measure **feature importance/significance (#1)**
   - [x] *Done when: model trained and logged in MLflow; importance ranking recorded*
 
-- [ ] **Day 2 — Feature experiments** 
-  - [ ] **add temporal features (#6)** (large-magnitude counts over the last 1 / 3 / 5+ years, backward-looking only) and 
-  - [ ]**prune the features that hurt the model most (#7)**, then re-evaluate 
-  - [ ] *Done when: expanded + pruned feature sets are trained and compared in MLflow*
+- [x] **Day 2 — Feature experiments** 
+  - [x] **add temporal features (#6)** (1 / 3 / 5-yr + all-time large-quake counts) — *rejected: they overfit and hurt validation PR-AUC*
+  - [x] **prune the features that hurt the model most (#7)** — dropped days_since_last, trend_7d, **depth**, the long-horizon counts, **and region**
+  - [x] *Done when: variants compared in MLflow — best set = 6 recent-activity features (val PR-AUC 0.368, first to beat baseline 0.360); see day2-factsheet*
 
-- [ ] **Day 3 — Per-region imbalance tuning** 
-  - [ ] **per-region class weighting (#5)** 
-  - [ ] **per-region prediction threshold (#4)** 
-  - [ ] *Done when: per-region weights + thresholds are tuned and logged*
+- [x] **Day 3 — Per-region imbalance tuning** 
+  - [x] **per-region class weighting (#5)** — *rejected: no PR-AUC gain; unweighted model adopted for far better calibration*
+  - [x] **per-region prediction threshold (#4)** — F2 (recall-first) thresholds: CA 0.060 / JP 0.240 / GR 0.140
+  - [x] **confidence tiers + calibration (#3)** — *pulled forward from Day 4:* isotonic calibration + Low/Med/High base-rate tiers (CA & Greece work; Japan single-tier)
+  - [x] *Done when: thresholds + tiers tuned and documented; see day3-factsheet*
 
 - [ ] **Day 4 — Confidence reporting + Present** 
-  - [] bucket predictions into **Low / Medium / High confidence (#3)**
-  - []**calibration check** (a "70%" means roughly 70%), then 
-  - [ ]**present** Week 4 progress *(presentation is Day 4 — no school Day 5)* 
+  - [x] bucket predictions into **Low / Medium / High confidence (#3)** *(done Day 3)*
+  - [x] **calibration check** (a "70%" means roughly 70%) *(done Day 3 — isotonic)*
+  - [ ] **present** Week 4 progress *(presentation is Day 4 — no school Day 5)* 
   - [ ] *Done when: confidence buckets produced, calibration checked, and Week 4 presented*
 
 - [ ] **Day 5 — No school (working day) — Leakage demo + final model** 
-  - [ ] run the **random-split leakage demonstration (#2)** to show how much shuffling inflates the metrics vs. our honest temporal split, then **pick the final model** and 
-  - [ ]**register/version it in MLflow** 
-  - [ ]*Done when: leakage demo documented; final model chosen and registered in MLflow*
+  - [ ] **random-split leakage demonstration (#2)** — *script `leakage_demo.py` built; needs a run + write-up*
+  - [ ] **hyperparameter tuning (regularization)** — *identified Day 3 as the real lever for overfitting (train 0.61 vs val 0.37) + Japan's weak ranking; still to run*
+  - [ ] **pick the final model** and **register/version it in MLflow** *(consolidate unweighted model + F2 thresholds + isotonic calibration into one artifact)*
+  - [ ] *Done when: leakage demo documented; final model chosen and registered in MLflow*
 
 - [ ] **Day 6 — Inference endpoint + Airflow DAG**       
   - [] build a minimal FastAPI endpoint that loads the registered model and returns per-region risk + confidence 

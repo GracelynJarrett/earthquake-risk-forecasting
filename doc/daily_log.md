@@ -121,10 +121,21 @@ First day of class — the project was introduced.
 **Blockers:** I had work and other class work that needs to get done as well
 
 
-## [Week  - ] July , 2026
-**Worked on:**
-**Up next:**
-**Blockers:**
+## [Week 4 - 2 ] July 21, 2026 (1 on 1 checkend)
+**Worked on:** Today I was able to get a lot done. I did more expermtation with the feachers and was able to get my AUP score up to 37 (i rounded up). I found that the feacher region was not needed along with the feachers that had longer durations, so years in setead of days and some 30d feachers where taken out. I also played around with the metric threshold but in the end I left them how they orginaly was.
+**Up next:** Tomorrow I will focuse on testing out changing the Split for a strict time split to a randome split to see what would happan. I also will start my Hypertuning.
+**Blockers:** I have homework in other classes that need to be done.
+
+**What we discussed:** Briefly summarize the key topics covered in the check-in.
+    Todays chekin was mainly around what I see as my biggest chalage though out all of my AI Classes. For me its being stubern about what I want done and how to get it done. However I have goten better at not bing so stubern and more of going with the flow and seeing what happans. We talked about how much I have improved over the classes and how I can contuine to work on my stubbernces and when being stubberne is ok. 
+**Feedback received:** What specific feedback or direction did the instructor give?
+    I have improve in my Presintatin skills, showing more confidence and being more prepared to present. Also that Its ok to be stubbernce with some parts of projects but I need to be more opean about my plains changing. Being more flexable in my methodes and plans for my project. 
+**Action items:** What will you do differently or prioritize as a result?
+    Try to be more opean about having my plans change and how I can handel them. 
+**Reflection:** In one or two sentences — was there anything that surprised you or that you want to think more about?
+    No nothing surprized me about my chanlige, I have seen know I was stubern about my project plans and how to implment them for a while. I do want to think about different ways I can be more opean to my plans changing, and being more aware when its ok to be stubern and when its ok that plans changed. 
+
+
 
 
 ## [Week  - ] July , 2026
