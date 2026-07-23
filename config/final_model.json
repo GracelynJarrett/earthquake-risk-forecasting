@@ -1,0 +1,38 @@
+{
+  "model": "xgboost_tuned",
+  "variant": "pruned_nodepth_noreg",
+  "features": [
+    "quakes_7d",
+    "quakes_30d",
+    "large_30d",
+    "avg_mag_7d",
+    "avg_mag_30d",
+    "max_mag_30d"
+  ],
+  "scale_pos_weight": 1.0,
+  "hyperparameters": {
+    "n_estimators": 300,
+    "max_depth": 2,
+    "learning_rate": 0.03,
+    "min_child_weight": 50,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "gamma": 0,
+    "reg_lambda": 1
+  },
+  "threshold_objective": "F2",
+  "thresholds": {
+    "california": 0.1,
+    "japan": 0.305,
+    "greece": 0.175
+  },
+  "tier_method": "per_region_base_rate",
+  "base_rates": {
+    "california": 0.1389,
+    "japan": 0.4063,
+    "greece": 0.1966
+  },
+  "high_mult": 1.5,
+  "calibration": "isotonic_per_region (fit on validation)",
+  "split": "temporal (train<=2018, validate 2019-21, test 2022-26, 7d embargo)"
+}

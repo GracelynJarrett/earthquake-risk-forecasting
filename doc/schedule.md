@@ -120,11 +120,12 @@ pitch outline
   - [ ] **present** Week 4 progress *(presentation is Day 4 — no school Day 5)* 
   - [ ] *Done when: confidence buckets produced, calibration checked, and Week 4 presented*
 
-- [ ] **Day 5 — No school (working day) — Leakage demo + final model** 
-  - [ ] **random-split leakage demonstration (#2)** — *script `leakage_demo.py` built; needs a run + write-up*
-  - [ ] **hyperparameter tuning (regularization)** — *identified Day 3 as the real lever for overfitting (train 0.61 vs val 0.37) + Japan's weak ranking; still to run*
-  - [ ] **pick the final model** and **register/version it in MLflow** *(consolidate unweighted model + F2 thresholds + isotonic calibration into one artifact)*
-  - [ ] *Done when: leakage demo documented; final model chosen and registered in MLflow*
+- [x] **Day 5 — No school (working day) — Leakage demo + final model** 
+  - [x] **random-split leakage demonstration (#2)** — every metric inflates (Japan-driven); untuned +0.134 vs tuned +0.037 (regularization leaks less); both split models logged to MLflow `earthquake-leakage-demo`
+  - [x] **hyperparameter tuning (regularization)** — winner depth2/lr0.03/mcw50; overfit gap 0.24→0.07; Japan ranking +0.07; 108 combos + winner logged to MLflow
+  - [x] **pick the final model** and **register/version it in MLflow** — `earthquake-risk-model` v1; config frozen in `config/final_model.json`
+  - [x] **final test evaluation (sealed test, once)** — test PR-AUC 0.40, ROC-AUC 0.66; high-recall alerts hold; tiers carry a documented caveat; logged to MLflow `final-test-eval`
+  - [x] *Done when: leakage demo documented; final model chosen and registered in MLflow — see day5-factsheet + final-test-factsheet*
 
 - [ ] **Day 6 — Inference endpoint + Airflow DAG**       
   - [] build a minimal FastAPI endpoint that loads the registered model and returns per-region risk + confidence 

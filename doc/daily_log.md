@@ -138,10 +138,10 @@ First day of class — the project was introduced.
 
 
 
-## [Week  - ] July , 2026
-**Worked on:**
-**Up next:**
-**Blockers:**
+## [Week 4 - 3 ] July 22, 2026
+**Worked on:** Today I was able to test out spliting the data set on random. The metrics whent up however it still consiter data leageae, do to recodes having the same vaules around the same time meaning the modle could memerize fake pattrons. I was also able to hypro tune my chosen model and at the test set. My final model now has a AUC metric of 0.40 wich is where I was hoping to have my model. 
+**Up next:** Tomorrow I will be having my inverew talk. I will also work on creating my airflow and seting my systom up to be adamadic. 
+**Blockers:** I had other homework I neede to work on
 
 
 ## [Week  - ] July , 2026

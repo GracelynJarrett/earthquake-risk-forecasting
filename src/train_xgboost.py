@@ -76,8 +76,9 @@ def build_xgb_model(preprocessor, scale_pos_weight=1.0):
         ("pre", preprocessor),
         ("clf", XGBClassifier(
             n_estimators=300,        # how many trees to build in sequence
-            max_depth=4,             # keep each tree shallow -> less overfitting
-            learning_rate=0.05,      # small steps -> steadier, more accurate learning
+            max_depth=2,             # TUNED (Day 5): shallow trees generalize best here
+            learning_rate=0.03,      # TUNED (Day 5): slow learning -> less overfitting
+            min_child_weight=50,     # TUNED (Day 5): require lots of evidence before a leaf splits
             subsample=0.8,           # each tree sees 80% of rows -> regularization
             colsample_bytree=0.8,    # each tree sees 80% of columns -> regularization
             eval_metric="aucpr",     # score by area under precision-recall (imbalance-aware)

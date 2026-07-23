@@ -1,0 +1,21 @@
+# gxboost_tunning.yaml — XGBoost hyperparameter tuning config (Week 4, Day 5).
+# Fixed settings + the grid searched by tune_hyperparams.py, on the region-blind lean
+# model. The grid knobs push toward simpler, less-overfit trees plus a learning-rate
+# sweep (the target: shrink the train 0.61 vs validation 0.37 gap and lift honest PR-AUC).
+
+# Held constant across the whole search (the Day-1 defaults minus the tuned knobs).
+base_params:
+  n_estimators: 300
+  subsample: 0.8
+  colsample_bytree: 0.8
+  eval_metric: aucpr
+  random_state: 42
+  n_jobs: -1
+
+# Knobs to sweep — every combination is tried (3 x 3 x 3 x 2 x 2 = 108 runs).
+search_grid:
+  learning_rate: [0.03, 0.05, 0.1]   # smaller steps generalize better (top generalization lever)
+  max_depth: [2, 3, 4]               # shallower trees memorize less
+  min_child_weight: [1, 10, 50]      # more evidence required before a leaf splits
+  gamma: [0, 2]                      # minimum gain required to make a split at all
+  reg_lambda: [1, 10]                # L2 penalty shrinking leaf weights
