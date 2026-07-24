@@ -24,8 +24,9 @@ import pandas as pd
 # 'time' lets us pause briefly between requests, to be polite to USGS.
 import time
 
-# 'datetime' gives us the current year, so "present" updates automatically.
-from datetime import datetime
+# 'datetime' gives us the current year, so "present" updates automatically;
+# timedelta + timezone let the inference pull grab a trailing "last N days" window.
+from datetime import datetime, timedelta, timezone
 
 # 'Path' builds file paths that work correctly on any operating system.
 from pathlib import Path
@@ -49,6 +50,9 @@ END_YEAR = datetime.now().year  # e.g. 2026 — updates itself automatically
 
 # The smallest magnitude we want. Below this, USGS ignores the quake.
 MIN_MAGNITUDE = 2.0
+
+# How many days of history the INFERENCE pull grabs each run (enough for 7/30-day features).
+RECENT_DAYS = 30
 
 # Where the raw CSV files get saved: <project>/data/raw/
 # Path(__file__) is this script's location; ".parent.parent" climbs up to the
@@ -200,6 +204,47 @@ def save_region_csv(name, quakes):
     return output_path
 
 
+def fetch_recent(box, days=RECENT_DAYS):
+    """
+    Pull one region's magnitude 2.0+ quakes from the last `days` days (inference input).
+
+    Same request as the historical pull, but with a trailing date window instead of a
+    calendar year — 30 days is enough to compute today's 7- and 30-day features.
+
+    Args:
+        box (dict): the region's rectangle (min/max lat and lon).
+        days (int): how many days back to pull. Defaults to RECENT_DAYS.
+
+    Returns:
+        list: the recent earthquakes as GeoJSON "feature" dicts.
+    """
+    end = datetime.now(timezone.utc)
+    start = end - timedelta(days=days)
+    params = {
+        "format": "geojson",
+        "starttime": start.strftime("%Y-%m-%dT%H:%M:%S"),
+        "endtime": end.strftime("%Y-%m-%dT%H:%M:%S"),
+        "minlatitude": box["min_lat"], "maxlatitude": box["max_lat"],
+        "minlongitude": box["min_lon"], "maxlongitude": box["max_lon"],
+        "minmagnitude": MIN_MAGNITUDE,
+    }
+    response = requests.get(USGS_URL, params=params, timeout=60)
+    response.raise_for_status()
+    return response.json()["features"]
+
+
+def run_recent(days=RECENT_DAYS):
+    """Pull the last `days` days for all regions and save as raw CSVs (the inference input)."""
+    print(f"Pulling last {days} days of USGS quakes, magnitude {MIN_MAGNITUDE}+\n")
+    for name, box in REGIONS.items():
+        try:
+            quakes = fetch_recent(box, days)
+            path = save_region_csv(name, quakes)
+            print(f"  {name}: {len(quakes)} quakes -> {path}")
+        except requests.RequestException as error:
+            print(f"  Could not pull {name}: {error}")
+
+
 def main():
     """
     Pull all three regions (2000 to present) and save each as a raw CSV.
@@ -230,4 +275,8 @@ def main():
 # "python src/fetch_usgs.py"). If another file imports these functions
 # later (like the pipeline), main() will NOT auto-run.
 if __name__ == "__main__":
-    main()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "recent":
+        run_recent()          # inference: last 30 days (python src/fetch_usgs.py recent)
+    else:
+        main()                # full history 2000-present (python src/fetch_usgs.py)

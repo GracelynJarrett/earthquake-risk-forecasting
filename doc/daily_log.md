@@ -144,10 +144,10 @@ First day of class — the project was introduced.
 **Blockers:** I had other homework I neede to work on
 
 
-## [Week  - ] July , 2026
-**Worked on:**
-**Up next:**
-**Blockers:**
+## [Week 4 - 4 ] July 23, 2026
+**Worked on:** Today we have invervews and I did better then I though I would so I am prode about that. I was able to get Airflow set up.
+**Up next:** I will test Airflow all the way though and then start setting up the fastapi end points
+**Blockers:** no Blockers
 
 
 ## [Week  - ] July , 2026

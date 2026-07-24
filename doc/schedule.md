@@ -117,8 +117,8 @@ pitch outline
 - [ ] **Day 4 — Confidence reporting + Present** 
   - [x] bucket predictions into **Low / Medium / High confidence (#3)** *(done Day 3)*
   - [x] **calibration check** (a "70%" means roughly 70%) *(done Day 3 — isotonic)*
-  - [ ] **present** Week 4 progress *(presentation is Day 4 — no school Day 5)* 
-  - [ ] *Done when: confidence buckets produced, calibration checked, and Week 4 presented*
+  - [x] **present** Week 4 progress *(presentation is Day 4 — no school Day 5)* 
+  - [x] *Done when: confidence buckets produced, calibration checked, and Week 4 presented*
 
 - [x] **Day 5 — No school (working day) — Leakage demo + final model** 
   - [x] **random-split leakage demonstration (#2)** — every metric inflates (Japan-driven); untuned +0.134 vs tuned +0.037 (regularization leaks less); both split models logged to MLflow `earthquake-leakage-demo`
@@ -129,7 +129,7 @@ pitch outline
 
 - [ ] **Day 6 — Inference endpoint + Airflow DAG**       
   - [] build a minimal FastAPI endpoint that loads the registered model and returns per-region risk + confidence 
-  - [] **define the Airflow DAG** (fetch → clean → load → predict) *(full end-to-end Docker test deferred to Week 5)* 
+  - [x] **define the Airflow DAG** (fetch → clean → load → predict) *(full end-to-end Docker test deferred to Week 5)* 
   - [] *Done when: endpoint returns a real per-region forecast and the DAG is defined*
 
 - [ ] **Day 7 — Deployment report + submit** 

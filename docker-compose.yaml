@@ -1,0 +1,19 @@
+# docker-compose.yaml — minimal Airflow (standalone) for the earthquake pipeline (Week 4).
+# Runs the Airflow web UI + scheduler in ONE container for local/dev use, mounting our DAGs
+# and project code so the DAG can call our scripts. NOT production (standalone + SQLite
+# metadata, single container); the hardened multi-service run is a Week-5 task.
+services:
+  airflow:
+    image: apache/airflow:2.10.5
+    command: standalone
+    ports:
+      - "8080:8080"                              # Airflow web UI -> http://localhost:8080
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"      # hide Airflow's demo DAGs
+      AIRFLOW_PROJECT_DIR: /opt/airflow/project  # the DAG reads this to find our scripts
+      # Install our Python deps into the container on startup (dev-quick; a custom
+      # Dockerfile using Airflow's constraints is the Week-5 hardening if versions clash).
+      _PIP_ADDITIONAL_REQUIREMENTS: "-r /opt/airflow/project/requirements.txt"
+    volumes:
+      - ./dags:/opt/airflow/dags                 # our DAG file
+      - .:/opt/airflow/project                   # our code + data + config

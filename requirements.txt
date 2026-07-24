@@ -50,4 +50,14 @@ PyYAML==6.0.3
 xgboost==3.3.0
 
 # NOTE: sqlite3 (our database) is built into Python, so it needs no install here.
-# Later weeks will add: apache-airflow (Week 4), fastapi (Week 5).
+
+# --- Airflow (Week 4) — provided by Docker, NOT installed in this venv -----------
+# apache-airflow orchestrates the pipeline (fetch_recent -> clean -> predict) on a
+# schedule. It does not run natively on Windows and is heavy to install locally, so
+# it runs inside the official Docker image instead — pinned in docker-compose.yaml as
+# apache/airflow:2.10.5. Kept out of the install list above so
+# `pip install -r requirements.txt` still works on Windows; recorded here for the
+# dependency record. Our own code (predict.py, etc.) is added into the container via
+# this same requirements.txt, which Airflow already satisfies.
+
+# Later weeks will add: fastapi (Week 5).
